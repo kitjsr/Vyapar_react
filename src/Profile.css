@@ -1,0 +1,21 @@
+.heading{
+    background-color:#c4e4ed ;
+    padding-top:50px;
+    padding-bottom:20px;
+    height:100%;
+}
+.add{
+    font-size:20px;
+    border-radius:100%;
+    border:solid 1px black;
+    padding:30px;
+    margin-top:20px;
+}
+.heading1 p{
+    text-align: left;
+    font-size:18px;
+    font-weight:450;
+}
+.but{
+    text-align: right;
+}
