@@ -21,6 +21,7 @@ import Party from "./Party";
 import Profile from "./Profile";
 import ViewProfile from "./ViewProfile";
 import Service from "./Service";
+import SingleInvoice from "./SingleInvoice";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
               <Route path="/profile" element={<Profile/>} />
               <Route path="/service" element={<Service/>} />
               <Route path="/viewprofile" element={<ViewProfile/>} />
+              <Route path="/singleInvoice" element={<SingleInvoice/>} />
               <Route path="/*" element={<Home />} />
             </Routes>
           </Col>

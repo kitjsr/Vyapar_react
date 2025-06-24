@@ -47,6 +47,11 @@ export const SidebarData = [
         icon:<AddCircleOutlinedIcon/>,
         link:"/service",
     },
+    {
+        title:"SingleInvoice",
+        icon:<AddCircleOutlinedIcon/>,
+        link:"/singleInvoice",
+    },
 ]
 
 export default SidebarData
