@@ -8,9 +8,9 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 export const SidebarData = [
     {
-        title:"Home",
+        title:"Anuu",
         icon:<HomeIcon/>,
-        link:"/home",
+        link:"/anuu",
     },
     {
         title:"Item",

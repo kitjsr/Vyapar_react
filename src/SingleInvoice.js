@@ -6,6 +6,18 @@ import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
 
 export const SingleInvoice = () => {
+    // const invoices[
+    //     {
+    //         "companyName":"Vmart",
+    //         "companyAddress":"New Delhi",
+    //         "invoiceNumber":22580,
+    //         "invoiceDate":12/05/25,
+    //         "customerName":"Esha Kumari",
+    //         "customerAddress":"Telco, Jamshedpur",
+    //         "addItem":"Jeans",
+            
+    //     },
+    // ]
   return (
     <Container className='single'>
                 <Row>

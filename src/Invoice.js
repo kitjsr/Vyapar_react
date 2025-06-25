@@ -11,73 +11,203 @@ import Alert from "react-bootstrap/Alert";
 import { Button } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import Sidebar from "./Sidebar";
-import DescriptionOutlined from '@mui/icons-material/DescriptionOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import DescriptionOutlined from "@mui/icons-material/DescriptionOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import ViewInArOutlinedIcon from "@mui/icons-material/ViewInArOutlined";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+
+import * as formik from "formik";
+import * as yup from "yup";
 export const Invoice = () => {
   const [balance, invoiceAmount, received, setBalance] = useState(0.0);
   const balance1 = () => {
     setBalance(invoiceAmount - received);
   };
+  const { Formik } = formik;
+
+  const schema = yup.object().shape({
+    companyName: yup.string().required(),
+    companyAddress: yup.string().required(),
+    invoiceNumber: yup.number().required(),
+    invoiceDate: yup.date().required(),
+    customerName: yup.string().required(),
+    customerAddress: yup.string().required(),
+    invoiceAmount: yup.number().required(),
+    received: yup.number().required(),
+  });
   return (
     <Container className="top">
-          <Row className="invoice">
-            <Col md={6} className="heading">
-              <h3>Enter details to make your first Sale 🚀</h3>
-              <p className="para">
-                First sale is made in less than a minute on Vyapar
-              </p>
-              <Form>
+      <Row className="invoice">
+        <Col md={6} className="heading">
+          <h3>Enter details to make your first Sale 🚀</h3>
+          <p className="para">
+            First sale is made in less than a minute on Vyapar
+          </p>
+          <Formik
+            validationSchema={schema}
+            onSubmit={console.log}
+            initialValues={{
+              companyName: "",
+              companyAddress: "",
+              invoiceNumber: "",
+              invoiceDate: "",
+              customerName: "",
+              customerAddress: "",
+              invoiceAmount: "",
+              received: "",
+            }}
+          >
+            {({ handleSubmit, handleChange, values, touched, errors }) => (
+              <Form noValidate onSubmit={handleSubmit}>
+                <Row className="invoice1">
+                  <Col>
+                    <p>
+                      <DescriptionOutlined className="person" />
+                      Company Details
+                    </p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="validationFormik04">
+                      <Form.Label>Comapny Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter company name"
+                        value={values.companyName}
+                        onChange={handleChange}
+                        isValid={touched.companyName && !errors.companyName}
+                        
+                // isInvalid={!!errors.companyName}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="validationFormik04">
+                      <Form.Label>Comapny address</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter company address"
+                        value={values.companyAddress}
+                        onChange={handleChange}
+                        isValid={
+                          touched.companyAddress && !errors.companyAddress
+                        }
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
                 <Row className="invoice1">
                   <Col md={6}>
                     <p>
-                      <DescriptionOutlined className="desc"/> Invoice Details :
+                      <DescriptionOutlined className="desc" /> Invoice Details :
                     </p>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="validationFormik04">
                       <Form.Label>Invoice Number</Form.Label>
                       <Form.Control
                         type="number"
                         placeholder="Enter invoice number"
+                        value={values.invoiceNumber}
+                        onChange={handleChange}
+                        isValid={touched.invoiceNumber && !errors.invoiceNumber}
+                // isInvalid={!!errors.invoiceNumber}
                       />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="validationFormik04">
                       <Form.Label>Invoice Date</Form.Label>
-                      <Form.Control type="date" placeholder="Invoice date" />
+                      <Form.Control
+                        type="date"
+                        placeholder="Invoice date"
+                        value={values.invoiceDate}
+                        onChange={handleChange}
+                        isValid={touched.invoiceDate && !errors.invoiceDate}
+                // isInvalid={!!errors.invoiceDate}
+                      />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
-                    <p><PersonOutlineOutlinedIcon className="person"/>Bill To :</p>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <p>
+                      <PersonOutlineOutlinedIcon className="person" />
+                      Bill To :
+                    </p>
+                    <Form.Group className="mb-3" controlId="validationFormik04">
                       <Form.Label>Customer Name</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Enter customer name"
+                        value={values.customerName}
+                        onChange={handleChange}
+                        isValid={touched.customerName && !errors.customerName}
+                        
+                // isInvalid={!!errors.customerName}
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="validationFormik04">
+                      <Form.Label>Address </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter customer address"
+                        value={values.customerAddress}
+                        onChange={handleChange}
+                        isValid={
+                          touched.customerAddress && !errors.customerAddress
+                        }
+                        // isInvalid={!!errors.customerAddress}
                       />
                     </Form.Group>
                   </Col>
                 </Row>
                 <Row className="invoice2">
                   <Col>
-                    <p><ViewInArOutlinedIcon/>Add Sample item</p>
+                    <p>
+                      <ViewInArOutlinedIcon />
+                      <a
+                        href="/additem"
+                        value={values.addItem}
+                        onChange={handleChange}
+                        isValid={touched.addItem && !errors.addItem}
+                // isInvalid={!!errors.addItem}
+                      >
+                        Add Sample item
+                      </a>
+                    </p>
                   </Col>
                 </Row>
                 <Row className="invoice1">
                   <Col>
-                    <p><CurrencyRupeeIcon className="person"/>Invoice calculation : </p>
+                    <p>
+                      <CurrencyRupeeIcon className="person" />
+                      Invoice calculation :{" "}
+                    </p>
                   </Col>
                 </Row>
                 <Row>
                   <Col md={6}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="validationFormik04">
                       <Form.Label>Invoice Amount</Form.Label>
-                      <Form.Control type="number" placeholder="0.00" />
+                      <Form.Control
+                        type="number"
+                        placeholder="0.00"
+                        value={values.invoiceAmount}
+                        onChange={handleChange}
+                        isValid={touched.invoiceAmount && !errors.invoiceAmount}
+                        
+                // isInvalid={!!errors.invoiceAmount}
+                      />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="validationFormik04">
                       <Form.Label>Received</Form.Label>
-                      <Form.Control type="number" placeholder="0.00" />
+                      <Form.Control
+                        type="number"
+                        placeholder="0.00"
+                        value={values.received}
+                        onChange={handleChange}
+                        isValid={touched.received && !errors.received}
+                        
+                // isInvalid={!!errors.received}
+                      />
                     </Form.Group>
                   </Col>
                 </Row>
@@ -101,16 +231,18 @@ export const Invoice = () => {
                   </Col>
                 </Row>
               </Form>
-            </Col>
-            <Col md={6} className="sample">
-              <h5>Sample Invoice</h5>
-              <br />
-              <Image
-                src="https://consumercomplaintscourt.com/wp-content/uploads/IMG-20230413-WA0068.jpg"
-                className="img"
-              />
-            </Col>
-          </Row>
+            )}
+          </Formik>
+        </Col>
+        <Col md={6} className="sample">
+          <h5>Sample Invoice</h5>
+          <br />
+          <Image
+            src="https://consumercomplaintscourt.com/wp-content/uploads/IMG-20230413-WA0068.jpg"
+            className="img"
+          />
+        </Col>
+      </Row>
     </Container>
   );
 };
